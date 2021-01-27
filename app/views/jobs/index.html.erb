@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <title>jFinder 2.0</title>
+  </head>
+  <body>
+    <% @jobs_array.each do |entry| %>
+    <p><%= entry.position %></p>
+      <p><%= entry.company %></p>
+      <p><%= entry.location %></p>
+      <p><%= entry.salary %></p>
+      <p><%= entry.date %></p>
+      <p><%= entry.description %></p>
+      <p><%= entry.url %></p>
+    <% end %>
+  </body>
+</html>
