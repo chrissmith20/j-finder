@@ -1,4 +1,4 @@
-require "nokogiri"
+require 'nokogiri'
 
 class JobsController < ApplicationController
 
@@ -29,7 +29,6 @@ class JobsController < ApplicationController
    parsed_content = Nokogiri::HTML(page_content)
 
    job_listings = parsed_content.css('div.jobsearch-SerpJobCard')
-   binding.pry
 
    @jobs_array = []
 
@@ -50,9 +49,5 @@ class JobsController < ApplicationController
   def index
     @jobs = Job.all
   end
-
-
-
-
 
 end
