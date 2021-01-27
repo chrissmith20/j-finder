@@ -2,27 +2,28 @@ require "nokogiri"
 
 class JobsController < ApplicationController
 
-  def initialize(position, company, location, salary, date, description, url)
-     @position = position
-     @company = company
-     @location = location
-     @salary = salary
-     @date = date
-     @description = description
-     @url = url
-   end
-   attr_reader :position
-   attr_reader :company
-   attr_reader :location
-   attr_reader :salary
-   attr_reader :date
-   attr_reader :description
-   attr_reader :url
-
+  class ScrapeItem
+    def initialize(position, company, location, salary, date, description, url)
+      @position = position
+      @company = company
+      @location = location
+      @salary = salary
+      @date = date
+      @description = description
+      @url = url
+    end
+    attr_reader :position
+    attr_reader :company
+    attr_reader :location
+    attr_reader :salary
+    attr_reader :date
+    attr_reader :description
+    attr_reader :url
+  end
 
  def scrape_jobs
+   require 'httparty'
    #pull in the page
-   require "httparty"
    url = "https://www.indeed.com/jobs?q=Software%20Engineer&l=Boston%2C%20MA&rbl=Boston%2C%20MA&jlid=e167aeb8a259bcac&sort=date&vjk=04ef7a50c33007f7"
    page_content = HTTParty.get(url)
    parsed_content = Nokogiri::HTML(page_content)
@@ -49,6 +50,8 @@ class JobsController < ApplicationController
   def index
     @jobs = Job.all
   end
+
+
 
 
 
