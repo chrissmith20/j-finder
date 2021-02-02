@@ -1,15 +1,3 @@
-/* .page {
-  background-color: black;
-  font-family: monospace;
-  font-size: 14px;
-  text-align: center;
-  line-height: 1px;
-  column-count: 3;
-  grid-template-columns: 33% 33% 33%;
-  padding: 50px;
-
-} */
-
 .wrapper {
   background-color:#111111;
   padding:1em;
@@ -22,10 +10,8 @@
   text-align: relative
 }
 
-/* Font */
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,700');
 
-/* Design */
 *,
 *::before,
 *::after {
