@@ -3,17 +3,17 @@ require 'nokogiri'
 class JobsController < ApplicationController
 
   class ScrapeItem
-    def initialize(position, company, location, salary, date, description, url)
-      @position = position
+    def initialize(company, position, location, salary, date, description, url)
       @company = company
+      @position = position
       @location = location
       @salary = salary
       @date = date
       @description = description
       @url = url
     end
-    attr_reader :position
     attr_reader :company
+    attr_reader :position
     attr_reader :location
     attr_reader :salary
     attr_reader :date
@@ -29,11 +29,13 @@ class JobsController < ApplicationController
    parsed_content = Nokogiri::HTML(page_content)
 
    job_listings = parsed_content.css('div.jobsearch-SerpJobCard')
+      company_info = job_listings.css('div.sjcl')
+
 
    @jobs_array = []
 
    job_listings.each do |element|
-     company = element.css('span.company').text,
+     company = company_info.css('span.company').text
      position = element.css('h2.title').text,
      location = element.css('span.accessible-contrast-color-location').text,
      salary = element.css('span.salaryText').text,
@@ -41,8 +43,14 @@ class JobsController < ApplicationController
      description = element.css('div.summary').text,
      url = "indeed.com"
 
+      # if company[index] > 1
+      #   only push company[1]
+      # elsif
+      #
+      # end
      @jobs_array << ScrapeItem.new(company, position, location, salary, date, description, url)
    end
+
    render template: 'scrape_jobs'
  end
 
