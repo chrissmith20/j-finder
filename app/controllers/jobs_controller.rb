@@ -23,7 +23,6 @@ class JobsController < ApplicationController
 
  def scrape_jobs
    require 'httparty'
-   #pull in the page
    url = "https://www.indeed.com/jobs?q=Software%20Engineer&l=Boston%2C%20MA&rbl=Boston%2C%20MA&jlid=e167aeb8a259bcac&sort=date&vjk=04ef7a50c33007f7"
    page_content = HTTParty.get(url)
    parsed_content = Nokogiri::HTML(page_content)
@@ -43,11 +42,6 @@ class JobsController < ApplicationController
      description = element.css('div.summary').text,
      url = "indeed.com"
 
-      # if company[index] > 1
-      #   only push company[1]
-      # elsif
-      #
-      # end
      @jobs_array << ScrapeItem.new(company, position, location, salary, date, description, url)
    end
 
