@@ -1,16 +1,31 @@
 <html>
   <head>
     <title>jFinder 2.0</title>
+    <h1>J-Finder</h1>
   </head>
   <body>
+    <div class="main">
+      <ul class="cards">
     <% @jobs_array.each do |entry| %>
-    <p><%= entry.position %></p>
+    <li class="cards_item">
+      <div class="card">
+        <div class="card_content">
+
+      <h2 class="card_title">
+        <%= entry.position %>
+      </h2>
       <p><%= entry.company %></p>
-      <p><%= entry.location %></p>
-      <p><%= entry.salary %></p>
       <p><%= entry.date %></p>
-      <p><%= entry.description %></p>
-      <p><%= entry.url %></p>
+      <p class="card_text">
+        <%= entry.description %>
+      </p>
+        <button class="btn">Read More</button>
+      </div>
+      </div>
+    </li>
     <% end %>
+  </ul>
+</div>
+
   </body>
 </html>
