@@ -34,7 +34,8 @@ class JobsController < ApplicationController
    @jobs_array = []
 
    job_listings.each do |element|
-     company = company_info.css('span.company').text
+     company_data = element.css('span.company').text,
+     company = element.css('span.company').text,
      position = element.css('h2.title').text,
      location = element.css('span.accessible-contrast-color-location').text,
      salary = element.css('span.salaryText').text,
@@ -43,13 +44,9 @@ class JobsController < ApplicationController
      url = "indeed.com"
 
      @jobs_array << ScrapeItem.new(company, position, location, salary, date, description, url)
-   end
+    end
 
-   render template: 'scrape_jobs'
- end
-
-  def index
-    @jobs = Job.all
+    render template: 'scrape_jobs'
   end
 
 end
