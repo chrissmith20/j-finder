@@ -42,6 +42,7 @@ class JobsController < ApplicationController
      date = element.css('span.date').text,
      description = element.css('div.summary').text,
      url = "indeed.com"
+     //Logic to filter search 
 
      @jobs_array << ScrapeItem.new(company, position, location, salary, date, description, url)
     end
