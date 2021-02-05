@@ -35,6 +35,7 @@ class JobsController < ApplicationController
     @jobs_array = []
 
     job_listings.each do |element|
+        company_data = element.css('span.company').text,
         company = element.css('span.company').text,
         position = element.css('h2.title').text,
         location = element.css('span.accessible-contrast-color-location').text,
@@ -54,15 +55,18 @@ class JobsController < ApplicationController
           url
         )
 
-
     end
 
-    # @new_job = []
 
-    # @new_job <<
+        # @new_job = []
 
-    @jobs_array[0].company[0]
-    # binding.pry
+        # @new_job <<
+
+        # @jobs_array[0].company[0]
+        # binding.pry
+
+    binding.pry
+
 
     render template: 'scrape_jobs'
   end
