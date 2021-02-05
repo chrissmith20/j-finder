@@ -27,26 +27,56 @@ class JobsController < ApplicationController
    page_content = HTTParty.get(url)
    parsed_content = Nokogiri::HTML(page_content)
 
-   job_listings = parsed_content.css('div.jobsearch-SerpJobCard')
+    job_listings = parsed_content.css('div.jobsearch-SerpJobCard')
       company_info = job_listings.css('div.sjcl')
 
+      black_list = ["CyberCoders, Revature"]
 
-   @jobs_array = []
 
-   job_listings.each do |element|
-     company_data = element.css('span.company').text,
-     company = element.css('span.company').text,
-     position = element.css('h2.title').text,
-     location = element.css('span.accessible-contrast-color-location').text,
-     salary = element.css('span.salaryText').text,
-     date = element.css('span.date').text,
-     description = element.css('div.summary').text,
-     url = "indeed.com"
-     //Logic to filter search 
+    @jobs_array = []
 
-     @jobs_array << ScrapeItem.new(company, position, location, salary, date, description, url)
+    job_listings.each do |element|
+        company_data = element.css('span.company').text,
+        company = element.css('span.company').text,
+        position = element.css('h2.title').text,
+        location = element.css('span.accessible-contrast-color-location').text,
+        salary = element.css('span.salaryText').text,
+        date = element.css('span.date').text,
+        description = element.css('div.summary').text,
+        url = "indeed.com"
+
+        new_job = {
+          "comp_key" => company,
+          "position_key" => position,
+          "location_key" => location,
+          "salary_key" => salary,
+          "date_key" => date,
+          "description_key" => description,
+          "url_key" => url
+        }
+
+        ScrapeItem.new(
+          company,
+          position,
+          location,
+          salary,
+          date,
+          description,
+          url
+        )
+
+        binding.pry
+
+
+        black_list.each do |bad_job|
+          if bad_job === ScrapeItem["comp_key"].values
+            ScrapeItem.delete(new_job)
+          elsif
+            @jobs_array << ScrapeItem
+          end
+        end
+
     end
-
     render template: 'scrape_jobs'
   end
 
