@@ -30,53 +30,68 @@ class JobsController < ApplicationController
     job_listings = parsed_content.css('div.jobsearch-SerpJobCard')
       company_info = job_listings.css('div.sjcl')
 
-      black_list = ["CyberCoders, Revature"]
+        black_list = ["CyberCoders, Revature"]
+
+          @jobs_array = []
+
+          jobs_hash = {}
 
 
-    @jobs_array = []
+    # job_listings.each do |element|
+    #     company_data = element.css('span.company').text,
+    #     company = element.css('span.company').text,
+    #     position = element.css('h2.title').text,
+    #     location = element.css('span.accessible-contrast-color-location').text,
+    #     salary = element.css('span.salaryText').text,
+    #     date = element.css('span.date').text,
+    #     description = element.css('div.summary').text,
+    #     url = "indeed.com"
+    #
+        # new_job = {
+        #   comp_key: "",
+        #   position_key: "",
+        #   location_key: "",
+        #   salary_key: "",
+        #   date_key: "",
+        #   description_key: "",
+        #   url_key: ""
+        # }
 
-    job_listings.each do |element|
-        company_data = element.css('span.company').text,
-        company = element.css('span.company').text,
-        position = element.css('h2.title').text,
-        location = element.css('span.accessible-contrast-color-location').text,
-        salary = element.css('span.salaryText').text,
-        date = element.css('span.date').text,
-        description = element.css('div.summary').text,
-        url = "indeed.com"
+        # black_list.each do |bad_job|
+        #   if bad_job === ScrapeItem["comp_key"].values
+        #     ScrapeItem.delete(new_job)
+        #   elsif
+        #     @jobs_array << ScrapeItem
+        #   end
+        # end
 
-        new_job = {
-          "comp_key" => company,
-          "position_key" => position,
-          "location_key" => location,
-          "salary_key" => salary,
-          "date_key" => date,
-          "description_key" => description,
-          "url_key" => url
-        }
+        new_job = {job: ""}
 
-        ScrapeItem.new(
-          company,
-          position,
-          location,
-          salary,
-          date,
-          description,
-          url
-        )
+        job_listings.each do |element|
+            company_data = [element.css('span.company').text],
+            company = [element.css('span.company').text],
+            position = [element.css('h2.title').text],
+            location =  [element.css('span.accessible-contrast-color-location').text],
+            salary = [element.css('span.salaryText').text],
+            date = [element.css('span.date').text],
+            description = [element.css('div.summary').text],
+            url = ["indeed.com"]
 
-        binding.pry
+            @jobs_array << ScrapeItem.new(company, position, location, salary, date, description, url)
 
+            # Look at this!!!
+            # your_array = ["12", "21", "1985"]
+            # keys = ['month', 'day', 'year']
+            # keys.zip(your_array).to_h
 
-        black_list.each do |bad_job|
-          if bad_job === ScrapeItem["comp_key"].values
-            ScrapeItem.delete(new_job)
-          elsif
-            @jobs_array << ScrapeItem
-          end
+            @jobs_array.each do |x|
+              new_job = {job: x}
+
+            end
+binding.pry
+
         end
 
-    end
     render template: 'scrape_jobs'
   end
 
