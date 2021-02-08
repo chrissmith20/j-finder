@@ -18,12 +18,12 @@
         <div class="card_content">
 
       <h2 class="card_title">
-        <%= entry.position %>
+        <%= entry.position[:position] %>
       </h2>
-      <p><%= entry.company %></p>
-      <p><%= entry.date %></p>
+      <p><%= entry.company[:company] %></p>
+      <p><%= entry.date[:date] %></p>
       <p class="card_text">
-        <%= entry.description %>
+        <%= entry.description[:description] %>
       </p>
         <button class="btn">Read More</button>
       </div>
