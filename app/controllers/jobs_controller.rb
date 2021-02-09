@@ -31,9 +31,10 @@ class JobsController < ApplicationController
       company_info = job_listings.css('div.sjcl')
       @jobs_array = []
 
-      black_list = ["CyberCoders, Revature"]
+      @black_list = []
 
         job_listings.each do |element|
+
           raw_job_data = [
             company_data = element.css('span.company').text,
             company = { company: element.css('span.company').text },
@@ -43,11 +44,18 @@ class JobsController < ApplicationController
             date = { date: element.css('span.date').text },
             description = { description: element.css('div.summary').text },
             url = { url: "indeed.com" }
-          ]
+        ]
 
+          bad_job_checker = raw_job_data[1][:company]
+
+          if bad_job_checker.strip == "CyberCoders"
+            @black_list << bad_job_checker
+          else
             @jobs_array << ScrapeItem.new(company, position, location, salary, date, description, url)
+          end
 
         end
+binding.pry
 
     render template: 'scrape_jobs'
   end
