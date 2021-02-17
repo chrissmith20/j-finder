@@ -53,7 +53,7 @@ class JobsController < ApplicationController
             salary = { salary: element.css('span.salaryText').text },
             date = { date: element.css('span.date').text },
             description = { description: element.css('div.summary').text },
-            url = { url: "www.indeed.com#{give_me_url}"}
+            url = { url: "www.indeed.com#{give_me_url}" }
           ]
 
           bad_job_checker = raw_job_data[1][:company]
