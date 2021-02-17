@@ -1,4 +1,5 @@
 <html>
+
   <head>
     <ul class="nav-bar">
       <h1 class="nav-item">J-Finder</h1>
@@ -7,8 +8,10 @@
       <li class="nav-item"><a href="contact.asp">Contact</a></li>
       <li class="nav-item"><a href="about.asp">About</a></li>
     </ul>
+
     <title>J-Finder</title>
   </head>
+
   <body>
     <div class="main">
       <ul class="cards">
@@ -26,14 +29,11 @@
         <%= entry.description[:description] %>
       </p>
 
-    <p>
-      <a href="<%=entry.url[:url]%>">
+      <a href=<%= "https://#{entry.url[:url]}" %>>
 
-        <button class="btn">
-          Read More
+        <button class="btn"> View Posting
         </button>
       </a>
-    </p>
 
       </div>
       </div>
