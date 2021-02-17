@@ -28,12 +28,22 @@ class JobsController < ApplicationController
    parsed_content = Nokogiri::HTML(page_content)
 
     job_listings = parsed_content.css('div.jobsearch-SerpJobCard')
-      company_info = job_listings.css('div.sjcl')
-      @jobs_array = []
+      titles = job_listings.css('h2.title')
+        anchor_tag_array = titles.css('a')
 
-      @black_list = []
+      @jobs_array = []
+        @job_url = []
+        @black_list = []
+
+        anchor_tag_array.each do |object|
+          everything = object.attributes.values
+          job_link = everything[2].value
+
+          @job_url << job_link
+        end
 
         job_listings.each do |element|
+          give_me_url = @job_url.shift
 
           raw_job_data = [
             company_data = element.css('span.company').text,
@@ -43,8 +53,8 @@ class JobsController < ApplicationController
             salary = { salary: element.css('span.salaryText').text },
             date = { date: element.css('span.date').text },
             description = { description: element.css('div.summary').text },
-            url = { url: "indeed.com" }
-        ]
+            url = { url: "www.indeed.com#{give_me_url}"}
+          ]
 
           bad_job_checker = raw_job_data[1][:company]
 
@@ -55,8 +65,6 @@ class JobsController < ApplicationController
           end
 
         end
-binding.pry
-
     render template: 'scrape_jobs'
   end
 
