@@ -4,15 +4,22 @@
   box-sizing: border-box;
 }
 
-body {
-  background-color: rgba(255, 152, 114, 1);
-  padding: 1rem;
+.data {
+  color: white;
+  text-shadow: 3px 3px 3px black;
+  text-align: center;
+  padding: 35px;
 }
+
+/* body { */
+  /* background-color: rgba(255, 152, 114, 1); */
+  /* padding: 1rem; */
+/* } */
 
 .briefcase {
   background: rgba(133, 89, 59, 1);
-  width: 250px;
-  height: 170px;
+  width: 900px;
+  height: 370px;
   margin: 70px auto 0;
   position: relative;
   -webkit-border-radius: 5px;
@@ -27,7 +34,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   padding: 0;
-
 }
 
 .item {
@@ -35,83 +41,84 @@ body {
   flex-wrap: wrap;
 }
 
-@media (min-width: 40rem) {
+/* @media (min-width: 40rem) {
   .item {
     width: 50%;
   }
-}
+} */
 
 @media (min-width: 56rem) {
   .item {
     width: 33.3333%;
+    padding: 30px;
   }
 }
 
-
 .briefcase .topface {
-  height: 22px;
+  height: 62px;
   width: 100%;
   background: rgba(194, 136, 73, 1);
   border-radius: 5px 5px 0px 0px;
 }
+
   .briefcase .topface-separator {
     background: rgba(133, 89, 50, 1);
-    height: 4px;
+    height: 5px;
     width: 100%;
     display: block;
-    margin: -13px 0 0;
+    margin: -35px 0 0;
     position: relative;
   }
 
   .briefcase .topface-separator span {
     display: block;
     position: absolute;
-    width: 12px;
+    width: 22px;
     height: 3px;
-    border: 4px solid rgba(133, 89, 50, 1);
+    border: 14px solid rgba(133, 89, 50, 1);
     border-top: 0px none;
   }
     .briefcase .topface-separator span.left {
-      left: 84px;
+      left: 238px;
     }
     .briefcase .topface-separator span.right {
-      right: 84px;
+      right: 238px;
     }
 
 .briefcase .strap {
   background: rgba(77, 53, 33, 1);
   position: absolute;
-  height: 170px;
-  width: 26px;
+  height: 370px;
+  width: 46px;
   top: 0;
 }
   .briefcase .strap.left {
-    left: 44px;
+    left: 64px;
   }
 
   .briefcase .strap.right {
-    right: 44px;
+    right: 64px;
   }
 
   .briefcase .strap .top {
     display: block;
     width: 100%;
-    height: 22px;
+    height: 62px;
     background: rgba(133, 89, 50, 1);
   }
 
 .briefcase .button {
-  width: 18px;
-  height: 6px;
+  width: 48px;
+  height: 12px;
   background: rgba(255, 201, 62, 1);
   position: absolute;
-  top: 8px;
+  top: 28px;
   border-bottom: 2px solid rgba(194, 136, 73, 1);
 }
 
   .briefcase .button::after {
     content: ' ';
-    height: 6px;
+    height: 12px;
     width: 6px;
     display: block;
     position: absolute;
@@ -120,12 +127,12 @@ body {
   }
 
   .briefcase .button.left {
-    left: 36px;
+    left: 46px;
     border-left: 4px solid rgba(194, 136, 73, 1);
   }
 
   .briefcase .button.right {
-    right: 36px;
+    right: 46px;
     border-right: 4px solid rgba(194, 136, 73, 1);
   }
 
@@ -139,13 +146,13 @@ body {
 
 .briefcase .handle {
   position: absolute;
-  top: -27px;
+  top: -42px;
   left: 50%;
   border: 12px solid rgba(77, 53, 33, 1);
   border-bottom: 0 none;
-  width: 48px;
-  height: 28px;
-  margin-left: -36px;
+  width: 208px;
+  height: 58px;
+  margin-left: -120px;
   -webkit-border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
   border-radius: 10px 10px 0 0;
