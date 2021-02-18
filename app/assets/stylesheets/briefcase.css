@@ -1,0 +1,152 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgba(255, 152, 114, 1);
+  padding: 1rem;
+}
+
+.briefcase {
+  background: rgba(133, 89, 59, 1);
+  width: 250px;
+  height: 170px;
+  margin: 70px auto 0;
+  position: relative;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 8px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow:    0px 8px 0px rgba(0, 0, 0, 0.1);
+  box-shadow:         0px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+.new {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+
+}
+
+.item {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 40rem) {
+  .item {
+    width: 50%;
+  }
+}
+
+@media (min-width: 56rem) {
+  .item {
+    width: 33.3333%;
+  }
+}
+
+
+.briefcase .topface {
+  height: 22px;
+  width: 100%;
+  background: rgba(194, 136, 73, 1);
+  border-radius: 5px 5px 0px 0px;
+}
+  .briefcase .topface-separator {
+    background: rgba(133, 89, 50, 1);
+    height: 4px;
+    width: 100%;
+    display: block;
+    margin: -13px 0 0;
+    position: relative;
+  }
+
+  .briefcase .topface-separator span {
+    display: block;
+    position: absolute;
+    width: 12px;
+    height: 3px;
+    border: 4px solid rgba(133, 89, 50, 1);
+    border-top: 0px none;
+  }
+    .briefcase .topface-separator span.left {
+      left: 84px;
+    }
+    .briefcase .topface-separator span.right {
+      right: 84px;
+    }
+
+.briefcase .strap {
+  background: rgba(77, 53, 33, 1);
+  position: absolute;
+  height: 170px;
+  width: 26px;
+  top: 0;
+}
+  .briefcase .strap.left {
+    left: 44px;
+  }
+
+  .briefcase .strap.right {
+    right: 44px;
+  }
+
+  .briefcase .strap .top {
+    display: block;
+    width: 100%;
+    height: 22px;
+    background: rgba(133, 89, 50, 1);
+  }
+
+.briefcase .button {
+  width: 18px;
+  height: 6px;
+  background: rgba(255, 201, 62, 1);
+  position: absolute;
+  top: 8px;
+  border-bottom: 2px solid rgba(194, 136, 73, 1);
+}
+
+  .briefcase .button::after {
+    content: ' ';
+    height: 6px;
+    width: 6px;
+    display: block;
+    position: absolute;
+    background: rgba(255, 201, 62, 1);
+    top: 0px;
+  }
+
+  .briefcase .button.left {
+    left: 36px;
+    border-left: 4px solid rgba(194, 136, 73, 1);
+  }
+
+  .briefcase .button.right {
+    right: 36px;
+    border-right: 4px solid rgba(194, 136, 73, 1);
+  }
+
+  .briefcase .button.right::after {
+   right: -10px;
+  }
+
+  .briefcase .button.left::after {
+   left: -10px;
+  }
+
+.briefcase .handle {
+  position: absolute;
+  top: -27px;
+  left: 50%;
+  border: 12px solid rgba(77, 53, 33, 1);
+  border-bottom: 0 none;
+  width: 48px;
+  height: 28px;
+  margin-left: -36px;
+  -webkit-border-radius: 10px 10px 0 0;
+  -moz-border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 0 0;
+}

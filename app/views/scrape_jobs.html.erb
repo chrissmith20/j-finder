@@ -12,35 +12,49 @@
     <title>J-Finder</title>
   </head>
 
+
+
   <body>
     <div class="main">
-      <ul class="cards">
+
+    <ul class="new">
+
     <% @jobs_array.each do |entry| %>
-    <li class="cards_item">
-      <div class="card">
-        <div class="card_content">
+    <li class="item">
+    <div class="briefcase">
 
-      <h2 class="card_title">
-        <%= entry.position[:position] %>
-      </h2>
-      <p><%= entry.company[:company] %></p>
-      <p><%= entry.date[:date] %></p>
-      <p class="card_text">
-        <%= entry.description[:description] %>
-      </p>
+      <div class="topface">
+        <span class="separator"></span></div>
 
-      <a href=<%= "https://#{entry.url[:url]}" %>>
+        <div class="topface-separator">
 
-        <button class="btn"> View Posting
-        </button>
-      </a>
+          <span class="left"></span>
+          <span class="right"></span>
+          <h2> <%= entry.position[:position] %> </h2>
+          <p> <%= entry.company[:company] %> </p>
+          <p> <%= entry.date[:date] %> </p>
+          <p> <%= entry.description[:description] %> </p>
 
-      </div>
-      </div>
+          <a target="_blank" href=<%= "https://#{entry.url[:url]}" %>>
+
+            <button class="btn"> View Job
+            </button>
+
+          </a>
+        </div>
+
+      <div class="strap left"><span class="top"> </span></div>
+      <div class="strap right"><span class="top"></span></div>
+      <div class="button left"></div>
+      <div class="button right"></div>
+      <div class="handle"></div>
+
+    </div>
     </li>
-    <% end %>
-  </ul>
-</div>
+      <% end %>
+    </ul>
+  </div>
 
   </body>
+
 </html>
