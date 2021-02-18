@@ -1,8 +1,25 @@
+.nav-bar {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  background-color: purple;
+}
+
+.nav-item {
+  display: inline;
+  padding: 5px;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
+
+.main{
+  max-width: 2700px;
+  margin: 0 auto;
+ }
 
 .data {
   color: white;
@@ -11,10 +28,6 @@
   padding: 35px;
 }
 
-/* body { */
-  /* background-color: rgba(255, 152, 114, 1); */
-  /* padding: 1rem; */
-/* } */
 
 .briefcase {
   background: rgba(133, 89, 59, 1);
