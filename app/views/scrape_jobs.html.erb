@@ -1,5 +1,4 @@
 <html>
-
   <head>
     <ul class="nav-bar">
       <h1 class="nav-item">J-Finder</h1>
@@ -14,33 +13,64 @@
 
   <body>
     <div class="main">
-      <ul class="cards">
+
+    <ul class="new">
+
     <% @jobs_array.each do |entry| %>
-    <li class="cards_item">
-      <div class="card">
-        <div class="card_content">
+    <li class="item">
+    <div class="briefcase">
 
-      <h2 class="card_title">
-        <%= entry.position[:position] %>
-      </h2>
-      <p><%= entry.company[:company] %></p>
-      <p><%= entry.date[:date] %></p>
-      <p class="card_text">
-        <%= entry.description[:description] %>
-      </p>
-
-      <a href=<%= "https://#{entry.url[:url]}" %>>
-
-        <button class="btn"> View Posting
-        </button>
-      </a>
-
+      <div class="topface">
+        <span class="separator"></span>
       </div>
+
+      <div class="strap left"><span class="top"></span>
       </div>
-    </li>
-    <% end %>
-  </ul>
-</div>
+
+      <div class="strap right"><span class="top"></span>
+      </div>
+
+        <div class="topface-separator">
+
+          <span class="left"></span>
+          <span class="right"></span>
+
+          <div class="data">
+
+          <h2> <%= entry.position[:position] %> </h2>
+          <p> <%= entry.company[:company] %> </p>
+          <p> <%= entry.date[:date] %> </p>
+          <p> <%= entry.description[:description] %> </p>
+
+          <a target="_blank" href=<%= "https://#{entry.url[:url]}" %>>
+
+            <button class="btn"> View Job
+            </button>
+
+          </a>
+        </div>
+      </div>
+
+
+
+        <div class="button left">
+
+        </div>
+
+        <div class="button right">
+
+        </div>
+
+        <div class="handle">
+
+        </div>
+
+    </div>
+  </li>
+      <% end %>
+    </ul>
+  </div>
 
   </body>
+
 </html>

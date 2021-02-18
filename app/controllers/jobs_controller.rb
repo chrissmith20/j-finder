@@ -45,15 +45,15 @@ class JobsController < ApplicationController
     page = 10
     last_page = 90
 
-    while page <= last_page do
+    # while page <= last_page do
+    #
+    #   pagination_url = "https://www.indeed.com/jobs?q=Software+Engineer&l=Boston%2C+MA&rbl=Boston%2C+MA&jlid=e167aeb8a259bcac&sort=date&start=#{page}"
+    #   pagination_page_content = HTTParty.get(pagination_url)
+    #   pagination_parsed_content = Nokogiri::HTML(pagination_page_content)
+    #     pagination_job_listings = pagination_parsed_content.css('div.jobsearch-SerpJobCard')
+    #
 
-      pagination_url = "https://www.indeed.com/jobs?q=Software+Engineer&l=Boston%2C+MA&rbl=Boston%2C+MA&jlid=e167aeb8a259bcac&sort=date&start=#{page}"
-      pagination_page_content = HTTParty.get(pagination_url)
-      pagination_parsed_content = Nokogiri::HTML(pagination_page_content)
-        pagination_job_listings = pagination_parsed_content.css('div.jobsearch-SerpJobCard')
-
-
-        pagination_job_listings.each do |element|
+        job_listings.each do |element|
           give_me_url = @job_url.shift
 
           raw_job_data = [
@@ -75,7 +75,7 @@ class JobsController < ApplicationController
             @jobs_array << ScrapeItem.new(company, position, location, salary, date, description, url)
           end
 
-        end
+        # end
       page += 10
     end
     render template: 'scrape_jobs'
