@@ -28,8 +28,19 @@
   padding: 35px;
 }
 
+.link {
+  position: absolute;
+  width: 600px;
+  height: 350px;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  opacity: 0;
+}
+
 
 .briefcase {
+  cursor: pointer;
   background: rgba(133, 89, 59, 1);
   width: 900px;
   height: 370px;
@@ -92,10 +103,10 @@
     border-top: 0px none;
   }
     .briefcase .topface-separator span.left {
-      left: 238px;
+      left: 150px;
     }
     .briefcase .topface-separator span.right {
-      right: 238px;
+      right: 150px;
     }
 
 .briefcase .strap {
@@ -131,7 +142,7 @@
 
   .briefcase .button::after {
     content: ' ';
-    height: 12px;
+    height: 10px;
     width: 6px;
     display: block;
     position: absolute;
@@ -159,14 +170,22 @@
 
 .briefcase .handle {
   position: absolute;
-  top: -42px;
+  top: -25px;
   left: 50%;
   border: 12px solid rgba(77, 53, 33, 1);
   border-bottom: 0 none;
   width: 208px;
   height: 58px;
-  margin-left: -120px;
+  margin-left: -105px;
   -webkit-border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
   border-radius: 10px 10px 0 0;
+}
+
+.briefcase .handle.left {
+
+}
+
+.briefcase .handle.right {
+
 }
