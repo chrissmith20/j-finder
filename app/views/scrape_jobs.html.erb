@@ -12,6 +12,8 @@
   </head>
 
   <body>
+
+
     <div class="main">
 
     <ul class="new">
@@ -19,6 +21,7 @@
     <% @jobs_array.each do |entry| %>
     <li class="item">
     <div class="briefcase">
+
 
       <div class="topface">
         <span class="separator"></span>
@@ -42,16 +45,11 @@
           <p> <%= entry.date[:date] %> </p>
           <p> <%= entry.description[:description] %> </p>
 
-          <a target="_blank" href=<%= "https://#{entry.url[:url]}" %>>
-
-            <button class="btn"> View Job
-            </button>
-
+          <a class="link" target="_blank" href=<%= "https://#{entry.url[:url]}" %>>
           </a>
+
         </div>
       </div>
-
-
 
         <div class="button left">
 
@@ -62,6 +60,14 @@
         </div>
 
         <div class="handle">
+
+        </div>
+
+        <div class="handle left">
+
+        </div>
+
+        <div class="handle right">
 
         </div>
 
