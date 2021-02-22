@@ -103,10 +103,10 @@
     border-top: 0px none;
   }
     .briefcase .topface-separator span.left {
-      left: 150px;
+      left: 175px;
     }
     .briefcase .topface-separator span.right {
-      right: 150px;
+      right: 175px;
     }
 
 .briefcase .strap {
@@ -171,12 +171,13 @@
 .briefcase .handle {
   position: absolute;
   top: -25px;
-  left: 50%;
+  left: 32%;
   border: 12px solid rgba(77, 53, 33, 1);
   border-bottom: 0 none;
-  width: 208px;
+  display: flex;
+  width: 36%;
   height: 58px;
-  margin-left: -105px;
+  margin: auto;
   -webkit-border-radius: 10px 10px 0 0;
   -moz-border-radius: 10px 10px 0 0;
   border-radius: 10px 10px 0 0;
