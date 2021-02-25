@@ -34,14 +34,41 @@ class JobsController < ApplicationController
       @jobs_array = []
         @job_url = []
         @black_list = []
-#================== Links/URL's ============================================
+#================== First Page Links/URL's ===================================
         anchor_tag_array.each do |object|
           everything = object.attributes.values
           job_link = everything[2].value
+          # binding.pry
 
           @job_url << job_link
         end
-#===========================================================================
+#================== First Page Jobs ============================
+      job_listings.each do |element|
+        give_me_url = @job_url.shift
+
+        raw_job_data = [
+          company_data = element.css('span.company').text,
+          company = { company: element.css('span.company').text },
+          position = { position: element.css('h2.title').text },
+          location = { location: element.css('span.accessible-contrast-color-location').text },
+          salary = { salary: element.css('span.salaryText').text },
+          date = { date: element.css('span.date').text },
+          description = { description: element.css('div.summary').text },
+          url = { url: "www.indeed.com#{give_me_url}" }
+        ]
+
+        bad_job_checker = raw_job_data[1][:company]
+
+        if bad_job_checker.strip == "CyberCoders"
+          @black_list << bad_job_checker
+        else
+          @jobs_array << ScrapeItem.new(company, position, location, salary, date, description, url)
+        end
+      end
+
+  #================== 2-4 Page Links/URL============================
+    
+  #=========Pagination Pages 2-4 ===========
     page = 10
     last_page = 30
 
@@ -77,6 +104,7 @@ class JobsController < ApplicationController
         end
       page += 10
     end
+    # binding.pry
     render template: 'scrape_jobs'
   end
 
