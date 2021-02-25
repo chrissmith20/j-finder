@@ -21,7 +21,7 @@ class JobsController < ApplicationController
     attr_reader :url
   end
 
- def scrape_jobs
+  def scrape_jobs
    require 'httparty'
    url = "https://www.indeed.com/jobs?q=Software%20Engineer&l=Boston%2C%20MA&rbl=Boston%2C%20MA&jlid=e167aeb8a259bcac&sort=date&vjk=04ef7a50c33007f7"
    page_content = HTTParty.get(url)
@@ -43,17 +43,16 @@ class JobsController < ApplicationController
         end
 #===========================================================================
     page = 10
-    last_page = 90
+    last_page = 30
 
-    # while page <= last_page do
-    #
-    #   pagination_url = "https://www.indeed.com/jobs?q=Software+Engineer&l=Boston%2C+MA&rbl=Boston%2C+MA&jlid=e167aeb8a259bcac&sort=date&start=#{page}"
-    #   pagination_page_content = HTTParty.get(pagination_url)
-    #   pagination_parsed_content = Nokogiri::HTML(pagination_page_content)
-    #     pagination_job_listings = pagination_parsed_content.css('div.jobsearch-SerpJobCard')
-    #
+    while page <= last_page do
 
-        job_listings.each do |element|
+      pagination_url = "https://www.indeed.com/jobs?q=Software+Engineer&l=Boston%2C+MA&rbl=Boston%2C+MA&jlid=e167aeb8a259bcac&sort=date&start=#{page}"
+      pagination_page_content = HTTParty.get(pagination_url)
+      pagination_parsed_content = Nokogiri::HTML(pagination_page_content)
+        pagination_job_listings = pagination_parsed_content.css('div.jobsearch-SerpJobCard')
+
+        pagination_job_listings.each do |element|
           give_me_url = @job_url.shift
 
           raw_job_data = [
@@ -75,7 +74,7 @@ class JobsController < ApplicationController
             @jobs_array << ScrapeItem.new(company, position, location, salary, date, description, url)
           end
 
-        # end
+        end
       page += 10
     end
     render template: 'scrape_jobs'
