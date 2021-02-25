@@ -3,5 +3,4 @@ Rails.application.routes.draw do
   root "jobs#scrape_jobs"
 
   resources :jobs
-
 end
