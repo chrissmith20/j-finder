@@ -21,69 +21,93 @@ class JobsController < ApplicationController
     attr_reader :url
   end
 
-  def scrape_jobs
-   require 'httparty'
-
-   # url = "https://www.indeed.com/jobs?q=Software%20Engineer&l=Boston%2C%20MA&rbl=Boston%2C%20MA&jlid=e167aeb8a259bcac&sort=date&vjk=04ef7a50c33007f7"
-   # second_page_urls = "https://www.indeed.com/jobs?q=Software+Engineer&l=Boston%2C+MA&rbl=Boston%2C+MA&jlid=e167aeb8a259bcac&sort=date&start=10"
-   # third_page_urls = "https://www.indeed.com/jobs?q=Software+Engineer&l=Boston%2C+MA&rbl=Boston%2C+MA&jlid=e167aeb8a259bcac&sort=date&start=20"
-   # fourth_page_urls = "https://www.indeed.com/jobs?q=Software+Engineer&l=Boston%2C+MA&rbl=Boston%2C+MA&jlid=e167aeb8a259bcac&sort=date&start=30"
-
-    data_hash = {
-
-      first_page: "https://www.indeed.com/jobs?q=Software%20Engineer&l=Boston%2C%20MA&rbl=Boston%2C%20MA&jlid=e167aeb8a259bcac&sort=date&vjk=04ef7a50c33007f7",
-
-      second_page: "https://www.indeed.com/jobs?q=Software+Engineer&l=Boston%2C+MA&rbl=Boston%2C+MA&jlid=e167aeb8a259bcac&sort=date&start=10",
-
-    }
+ def scrape_jobs
+    require 'httparty'
 
     @jobs_array = []
-    @job_url = []
-    @black_list = []
-    anchor_tag_array = []
+      @job_url = []
+      @black_list = []
 
-    data_hash.each do |key, value|
-      page_data = HTTParty.get(value)
-      parsed_data = Nokogiri::HTML(page_data)
-      @job_listings_data = parsed_data.css('div.jobsearch-SerpJobCard')
-      anchor_tag_array << @job_listings_data
-      # single_anchor_tag = anchor_tags.attributes.values
-      # anchor_tag_array << anchor_tags
+    url = "https://www.indeed.com/jobs?q=Software%20Engineer&l=Boston%2C%20MA&rbl=Boston%2C%20MA&jlid=e167aeb8a259bcac&sort=date&vjk=04ef7a50c33007f7"
+
+    url2 = "https://www.indeed.com/jobs?q=Software+Engineer&l=Boston%2C+MA&rbl=Boston%2C+MA&jlid=e167aeb8a259bcac&sort=date&start=10"
+
+    page_content = HTTParty.get(url)
+    parsed_content = Nokogiri::HTML(page_content)
+
+    job_listings = parsed_content.css('div.jobsearch-SerpJobCard')
+    titles = job_listings.css('h2.title')
+    anchor_tags = titles.css('a')
+
+    anchor_tags.each do |object|
+      everything = object.attributes.values
+      job_link = everything[2].value
+
+      @job_url << job_link
     end
 
-    # title_data = @job_listings_data.css('h2.title')
-    #
-    binding.pry
-    # anchor_tag_array << title_data.css('a').attributes
-#=============================================================================
+    job_listings.each do |element|
+      give_me_url = @job_url.shift
 
-    anchor_tag_array.each do |element, item|
-      # element = first url
-      # item = second url
-
-      # give_me_url = @job_url.shift
-
-        binding.pry
+      raw_job_data = [
         company_data = element.css('span.company').text,
         company = { company: element.css('span.company').text },
         position = { position: element.css('h2.title').text },
-        location = { location: element.css('span.accessible-contrast-color- location').text },
+        location = { location: element.css('span.accessible-contrast-color-location').text },
         salary = { salary: element.css('span.salaryText').text },
         date = { date: element.css('span.date').text },
         description = { description: element.css('div.summary').text },
-        url = { url: "www.indeed.com" }
+        url = { url: "www.indeed.com#{give_me_url}" }
+      ]
 
-
-      bad_job_checker = [:company]
+      bad_job_checker = raw_job_data[1][:company]
 
       if bad_job_checker.strip == "CyberCoders"
         @black_list << bad_job_checker
       else
-        @jobs_array << ScrapeItem.new(company, position, location, salary, date,  description, url)
+        @jobs_array << ScrapeItem.new(company, position, location, salary, date, description, url)
       end
+
     end
 
-#============================= Without a Hash ================================
+    #============================ page 2 ===================================
+
+    page_content2 = HTTParty.get(url2)
+    parsed_content2 = Nokogiri::HTML(page_content2)
+      job_listings2 = parsed_content2.css('div.jobsearch-SerpJobCard')
+      titles2 = job_listings2.css('h2.title')
+        anchor_tags2 = titles2.css('a')
+
+        anchor_tags2.each do |object|
+          everything = object.attributes.values
+          job_link = everything[2].value
+
+          @job_url << job_link
+        end
+
+        job_listings2.each do |element|
+          give_me_url = @job_url.shift
+
+          raw_job_data = [
+            company_data = element.css('span.company').text,
+            company = { company: element.css('span.company').text },
+            position = { position: element.css('h2.title').text },
+            location = { location: element.css('span.accessible-contrast-color-location').text },
+            salary = { salary: element.css('span.salaryText').text },
+            date = { date: element.css('span.date').text },
+            description = { description: element.css('div.summary').text },
+            url = { url: "www.indeed.com#{give_me_url}" }
+          ]
+
+          bad_job_checker = raw_job_data[1][:company]
+
+          if bad_job_checker.strip == "CyberCoders"
+            @black_list << bad_job_checker
+          else
+            @jobs_array << ScrapeItem.new(company, position, location, salary, date, description, url)
+          end
+
+        end
     render template: 'scrape_jobs'
   end
 
