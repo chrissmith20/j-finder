@@ -52,7 +52,7 @@ class JobsController < ApplicationController
     end
 
     # title_data = @job_listings_data.css('h2.title')
-    #
+    
     binding.pry
     # anchor_tag_array << title_data.css('a').attributes
 #=============================================================================
