@@ -2,12 +2,17 @@
   padding: 0;
   margin: 0;
   text-align: left;
-  background-color: purple;
+  color: white;
+  /* background: #172a3d; */
 }
 
 .nav-item {
   display: inline;
   padding: 5px;
+}
+
+a:link {
+  color: white;
 }
 
 *,
