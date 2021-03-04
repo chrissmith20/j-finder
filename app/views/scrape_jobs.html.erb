@@ -23,7 +23,6 @@
     <li class="item">
     <div class="briefcase">
 
-
       <div class="topface">
         <span class="separator"></span>
       </div>
@@ -41,13 +40,15 @@
 
           <div class="data">
 
-          <h2> <%= entry.position[:position] %> </h2>
+          <a class="link" target="_blank" href=<%= "https://#{entry.url[:url]}" %>>
+          <h2>
+            <%= entry.position[:position] %>
+          </h2>
           <p> <%= entry.company[:company] %> </p>
           <p> <%= entry.date[:date] %> </p>
           <p> <%= entry.description[:description] %> </p>
-
-          <a class="link" target="_blank" href=<%= "https://#{entry.url[:url]}" %>>
           </a>
+
 
         </div>
       </div>
@@ -61,14 +62,6 @@
         </div>
 
         <div class="handle">
-
-        </div>
-
-        <div class="handle left">
-
-        </div>
-
-        <div class="handle right">
 
         </div>
 
