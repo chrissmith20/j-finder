@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_01_27_185559) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "jobs", force: :cascade do |t|
     t.string "position"
     t.string "company"
