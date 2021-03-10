@@ -1,8 +1,3 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
 # J-Finder 
 
 # Description: J-Finder is an app that shows software developers jobs they may be interested in. This essentially cuts down the overall job search time.
