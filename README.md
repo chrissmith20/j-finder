@@ -3,9 +3,9 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
-# J-Finder 2.0
+# J-Finder 
 
-# Description: J-Finder 2.0 is an app that shows software developers jobs they may be interested in. This essentially cuts down the overall job search time.
+# Description: J-Finder is an app that shows software developers jobs they may be interested in. This essentially cuts down the overall job search time.
 
 J-Finder also has a filter that filters out those pesky recruiter false job postings. This further cuts down time for the job hunter from getting distracted by fake job postings.
 
@@ -17,7 +17,7 @@ All you have to do is click on a briefcase and you will be directed to a job!
 
 # Heroku Link:
 
--
+- https://j-finder.herokuapp.com/
 
 # Technologies:
 
